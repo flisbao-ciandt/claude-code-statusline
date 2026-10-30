@@ -104,6 +104,25 @@ Se já existir um `~/.claude/statusline.sh` diferente, o setup guarda uma cópia
 em `statusline.sh.bak.<timestamp>` antes de sobrescrever, e diz o nome do
 backup.
 
+### Sem marketplace (a partir de um clone)
+
+```bash
+git clone git@github.com:flisbao-ciandt/claude-code-statusline.git ~/.claude-code-statusline
+~/.claude-code-statusline/install.sh
+```
+
+O `install.sh` faz o mesmo que o setup — launcher em `~/.claude/statusline.sh`,
+chave `statusLine` no `settings.json` (com backup) e config padrão — mas aponta o
+launcher para o clone, pela flag `~/.claude/statusline-dev`. Atualizar é
+`git -C ~/.claude-code-statusline pull`; reinicie o Claude Code depois.
+
+Seguro para rodar de novo. Se já existir uma `statusLine` diferente, ele pergunta
+antes de substituir (`--force` pula a pergunta). `--uninstall` remove a flag.
+Precisa do `jq`; sem ele o script diz o que gravar no `settings.json` na mão.
+
+O default criado por ele liga `spent` e `status` no `flow`. O widget só aparece
+quando o Claude Code roda com a chave do gateway Flow em `ANTHROPIC_AUTH_TOKEN`.
+
 Para ligar na mão:
 
 ```json
